@@ -97,6 +97,9 @@ var Node = function(value) {
 
 /*
  * Complexity: What is the time complexity of the above functions?
+ -AddToTail = Constant time
+ -Removehead = Constant time
+ -Contains = Linear time
  */
 
 
