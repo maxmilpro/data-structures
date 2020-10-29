@@ -18,6 +18,23 @@ treeMethods.addChild = function(value) {
 };
 
 treeMethods.contains = function(target) {
+  // if the value of the current node is equal to target
+  if (this.value === target) {
+    // return true
+    return true;
+  }
+  // debugger;
+  // iterate over the children of the current node
+  for (var i = 0; i < this.children.length; i++) {
+    // call contains on each child
+    return this.children[i].contains(target); // this.children[0].contains(target); === {value: 5, chidlren: [...]}.contains(target);
+  }
+
+  // _.each(this.children, function(value) {
+  //   return value.contains(target);
+  // });
+  // return false
+  return false;
 };
 
 
