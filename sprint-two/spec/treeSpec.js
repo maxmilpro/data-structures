@@ -32,6 +32,17 @@ describe('tree', function() {
     expect(tree.children[0].children[0].value).to.equal(6);
   });
 
+  it('should accept any data type', function() {
+    tree.addChild(5);
+    expect(tree.children[0].value).to.equal(5);
+    tree.addChild('five');
+    expect(tree.children[1].value).to.equal('five');
+    tree.addChild([]);
+    expect(tree.children[2].value).to.eql([]);
+    tree.addChild(undefined);
+    expect(tree.children[3].value).to.equal(undefined);
+  });
+
   it('should correctly detect nested children', function() {
     tree.addChild(5);
     tree.addChild(6);

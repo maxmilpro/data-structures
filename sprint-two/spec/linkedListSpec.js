@@ -52,4 +52,8 @@ describe('linkedList', function() {
   });
 
   // add more tests here to test the functionality of linkedList
+  it('should point the tail and head to the same value if there is only one value in the linkedList', function() {
+    linkedList.addToTail(4);
+    expect(linkedList.head).to.equal(linkedList.tail);
+  });
 });

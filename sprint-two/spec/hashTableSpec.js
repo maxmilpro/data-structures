@@ -31,7 +31,6 @@ describe('hashTable', function() {
 
   it('should not contain values that were removed', function() {
     hashTable.insert('Steven', 'Tyler');
-    debugger;
     hashTable.remove('Steven');
     expect(hashTable.retrieve('Steven')).to.equal(undefined);
   });
@@ -46,6 +45,14 @@ describe('hashTable', function() {
     expect(hashTable.retrieve(v1)).to.equal(v1);
     expect(hashTable.retrieve(v2)).to.equal(v2);
     window.getIndexBelowMaxForKey = oldHashFunction;
+  });
+
+  it('should contain values that were not removed', function() {
+    hashTable.insert('Steven', 'Tyler');
+    hashTable.insert('Max', 'Proano');
+    hashTable.remove('Steven');
+    expect(hashTable.retrieve('Steven')).to.equal(undefined);
+    expect(hashTable.retrieve('Max')).to.equal('Proano');
   });
 
   // (Advanced! Remove the extra "x" when you want the following tests to run)
