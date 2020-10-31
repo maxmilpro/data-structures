@@ -15,13 +15,43 @@ var LimitedArray = function(limit) {
   var storage = [];
 
   var limitedArray = {};
-  limitedArray.get = function(index) {
+  limitedArray.get = function(index, key) {
     checkLimit(index);
-    return storage[index];
+    // iterate over the bucket at the index
+    for (var i = 0; i < storage[index].length; i++) {
+      // if key is equal to first value in tuple
+      if (key === storage[index][i][0]) {
+        // return second value in tuple
+        return storage[index][i][1];
+      }
+    }
   };
-  limitedArray.set = function(index, value) {
+  limitedArray.set = function(index, key, value) {
     checkLimit(index);
-    storage[index] = value;
+    // if the value at the current index is undefined
+    if (storage[index] === undefined) {
+      // add a bucket array to storage
+      storage[index] = [];
+      // add the key and value as a tuple to the bucket array
+      storage[index].push([key, value]);
+    // otherwise
+    } else {
+      let tupleUpdated = false;
+      // iterate over the bucket
+      for (var i = 0; i < storage[index].length; i++) {
+        // if key is equal to first value in tuple
+        if (key === storage[index][i][0]) {
+          // update the second value in tuple
+          storage[index][i][1] = value;
+          tupleUpdated = true;
+        }
+      }
+      // if flag is false
+      if (!tupleUpdated) {
+        // add the key and value as a tuple to the bucket array
+        storage[index].push([key, value]);
+      }
+    }
   };
   limitedArray.each = function(callback) {
     for (var i = 0; i < storage.length; i++) {
