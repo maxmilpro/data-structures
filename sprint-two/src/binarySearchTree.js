@@ -41,9 +41,6 @@ BinarySearchTree.prototype.contains = function(val) {
     // return true
     return true;
   }
-  // if (this.left === null && this.right === null) {
-  //   return false;
-  // }
   // if the input value is less than the root node value
   if (val < this.value) {
     if (this.left === null) {
@@ -68,7 +65,18 @@ BinarySearchTree.prototype.contains = function(val) {
 };
 
 BinarySearchTree.prototype.depthFirstLog = function(callback) {
-
+  // invoke the callback function on the root node value
+  callback(this.value);
+  // if the left prop isnt null
+  if (this.left !== null) {
+    // invoke the depthFirstLog on the left value
+    this.left.depthFirstLog(callback);
+  }
+  // if the right prop isn't null
+  if (this.right !== null) {
+    // invoke the depthFirstLog on the right value
+    this.right.depthFirstLog(callback);
+  }
 };
 
 /*
